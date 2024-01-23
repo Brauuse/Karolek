@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Brause_Shop.com</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.2/css/fontawesome.min.css">
+    <style>
+        .cart-container {
+            background-color: #f8f8f8;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            margin-top: 30px;
+        }
+
+        #cart-list {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        #cart-list li {
+            padding: 10px;
+            border-bottom: 1px solid #ddd;
+            font-size: 16px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+    </style>
+</head>
+<body>
+    <br>
+    <br>
+    <br>
+    <br>
+    
+    <div class="header">
+        <div class="container">
+            <div class="navbar">
+                <div class="logo">
+                    <img src="Bilder/Snack shop.png" width="355px" id="logo">
+                </div>
+                <nav>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="Shop.html">Products</a></li>
+                        <li><a href="Bewertung.html">Sterne-Bewertung</a></li>
+                        <li><a href="">Contact</a></li>
+                        <li><a href="">Account</a></li>
+                    </ul>
+                </nav>
+                <img src="Bilder/Bot.jpg" width="50px" height="50px">
+            </div>
+        </div>
+    </div>
+
+    <div class="categories">
+        <div class="small-container">
+            <div class="row">
+                <div class="col-3">
+                    <img src="Bilder/Pop.jpg">
+                </div>
+                <div class="col-3">
+                    <img src="Bilder/Brause.jpg">
+                </div>
+                <div class="col-3">
+                    <img src="Bilder/Mango.png">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="small-container">
+        <h1 class="title">Alte Produkte</h1>
+        <div class="row">
+            <div class="col-4">
+                <img src="Bilder/Brause.jpg">
+                <h2>Brause</h2>
+                <div class="rating"></div>
+                <h2><em>0.30€</em></h2>
+            </div>
+            <div class="col-4">
+                <img src="Bilder/Milch.jpg">
+                <h2>Vanille Milch</h2>
+                <div class="rating"></div>
+                <h2><em>1.80€</em></h2>
+            </div>
+            <div class="col-4">
+                <img src="Bilder/Pop.jpg">
+                <h2>Karamel Popcorn</h2>
+                <div class="rating"></div>
+                <h2><em>4.00€</em></h2>
+            </div>
+        </div>
+
+        <h1 class="title">Neuste Produkte</h1>
+        <div class="row">
+            <div class="col-4">
+                <img src="Bilder/nr1.png">
+                <h2>Popping Candy Banana/Black Cherry</h2>
+                <div class="rating"></div>
+                <h2><em>0.30€</em></h2>
+            </div>
+            <div class="col-4">
+                <img src="Bilder/Mango.png">
+                <h2>Popping Candy Mango/Cotton</h2>
+                <div class="rating"></div>
+                <h2><em>0.30€</em></h2>
+            </div>
+            <div class="col-4">
+                <img src="Bilder/Melon.png">
+                <h2>Popping Candy Limited Edition</h2>
+                <div class="rating"></div>
+                <h2><em>0.30€</em></h2>
+            </div>
+        </div>
+    </div>
+
+    <div class="small-container">
+        <div id="cart-container" class="cart-container">
+            <h1>Warenkorb</h1>
+            <ul id="cart-list"></ul>
+            <button id="pay-button">Bezahlen</button>
+        </div>
+    </div>
+
+    <div id="order-details"></div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            let cart = [];
+
+            function addToCart(productName, price) {
+                const item = {
+                    name: productName,
+                    price: price
+                };
+                cart.push(item);
+                updateCart();
+            }
+
+            function updateCart() {
+                const cartList = document.getElementById('cart-list');
+                cartList.innerHTML = '';
+
+                if (cart.length === 0) {
+                    cartList.innerHTML = '<li>Warenkorb ist leer.</li>';
+                } else {
+                    cart.forEach(item => {
+                        const listItem = document.createElement('li');
+                        listItem.textContent = `${item.name} - ${item.price.toFixed(2)}€`;
+                        cartList.appendChild(listItem);
+                    });
+                }
+            }
+
+            const productImages = document.querySelectorAll('.col-4 img');
+
+            productImages.forEach(image => {
+                image.addEventListener('click', function () {
+                    const productName = this.nextElementSibling.textContent;
+                    const productPrice = parseFloat(this.nextElementSibling.nextElementSibling.nextElementSibling.textContent.replace('€', ''));
+                    addToCart(productName, productPrice);
+                });
+            });
+        });
+    </script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            let cart = [];
+            let orderCode = '';
+
+            function addToCart(productName, price) {
+                const item = {
+                    name: productName,
+                    price: price
+                };
+                cart.push(item);
+                updateCart();
+            }
+
+            function updateCart() {
+                const cartList = document.getElementById('cart-list');
+                cartList.innerHTML = '';
+
+                if (cart.length === 0) {
+                    cartList.innerHTML = '<li>Warenkorb ist leer.</li>';
+                } else {
+                    cart.forEach(item => {
+                        const listItem = document.createElement('li');
+                        listItem.textContent = `${item.name} - ${item.price.toFixed(2)}€`;
+                        cartList.appendChild(listItem);
+                    });
+                }
+            }
+
+            function generateOrderCode() {
+                const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+                let code = '';
+                for (let i = 0; i < 8; i++) {
+                    code += characters.charAt(Math.floor(Math.random() * characters.length));
+                }
+                return code;
+            }
+
+            function displayOrderCode() {
+                orderCode = generateOrderCode();
+                alert(`Dein Bestellcode: ${orderCode}`);
+                localStorage.setItem('orderCode', orderCode);
+            }
+
+            function displayOrderDetails() {
+                const storedCode = localStorage.getItem('orderCode');
+                if (storedCode) {
+                    const orderDetailsContainer = document.getElementById('order-details');
+                    orderDetailsContainer.innerHTML = `<p>Dein Bestellcode: ${storedCode}</p>`;
+                    cart.forEach(item => {
+                        const itemInfo = document.createElement('p');
+                        itemInfo.textContent = `${item.name} - ${item.price.toFixed(2)}€`;
+                        orderDetailsContainer.appendChild(itemInfo);
+                    });
+                }
+            }
+
+            document.getElementById('pay-button').addEventListener('click', function () {
+                displayOrderCode();
+                updateCart();
+            });
+
+            displayOrderDetails();
+        });
+    </script>
+</body>
+</html>

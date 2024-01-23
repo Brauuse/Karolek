@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Brause_Shop.com</title>
+    <link rel="stylesheet" href="style.css">
+    
+    <style>
+        body {
+            background-image: url('bilder/background.jpg');
+            background-size: cover;
+            background-position: center;
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        .header {
+            background-color: #333;
+            color: #fff;
+            padding: 1em 0;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+        }
+
+        nav ul li {
+            margin: 0 15px;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: #fff;
+        }
+
+        .logo img {
+            max-width: 100%;
+        }
+
+        .row {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+        }
+
+        .col-2 {
+            flex-basis: 45%;
+            text-align: left;
+        }
+
+        .col-2 h1 {
+            font-size: 2.5em;
+            margin-bottom: 20px;
+        }
+
+        .col-2 p {
+            font-size: 1.2em;
+            color: #888;
+            margin-bottom: 20px;
+        }
+ 
+        .btn {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #333;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 5px;
+        }
+
+        .categories {
+            background-color: #f4f4f4;
+            padding: 2em 0;
+        }
+
+        .categories img {
+            max-width: 100%;
+            border-radius: 8px;
+            margin-bottom: 20px;
+        }
+
+        .featured-products {
+            padding: 2em 0;
+        }
+
+        .col-4 {
+            flex-basis: 23%;
+            margin-bottom: 20px;
+        }
+
+        .col-4 img {
+            max-width: 100%;
+            border-radius: 8px;
+        }
+
+        .rating {
+            color: gold;
+        }
+
+        .offer {
+            background-color: #f4f4f4;
+            padding: 2em 0;
+        }
+
+        .offer-img {
+            max-width: 100%;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div class="container">
+            <div class="navbar">
+                <div class="logo">
+                    <br>
+                    <br>
+                    <br>
+                    <br>
+                    <br>
+                    <br>
+                    <br>
+                    <br>
+                    <br>
+                    <img src="Bilder/Snack shop.png" width="300px" id="logo">
+                    
+                </div>
+                <nav>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="Shop.html">Products</a></li>
+                        <li><a href="Bewertung.html">Sterne-Bewertung</a></li>
+                        <li><a href="">Contact</a></li>
+                        <li><a href="">Account</a></li>
+                    </ul>
+                </nav>
+                <img src="Bilder/Bot.jpg" width="100px" height="100px">
+            </div>
+            <div class="row">
+                <div class="col-2">
+                    <h1>Der neuere Brause Shop!<br>Bessere Qualität, bessere Produkte, besssres alles!</h1>
+                    <p>Der neue Brause Shop ist hier mit officiel online!</p>
+                    <a href="Shop.html" class="btn">Kaufe jetzt ein!!! &#8594;</a>
+                </div>
+                <div class="col-2">
+                    <img src="Bilder/Mango.png" width="500px">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="categories">
+        <div class="small-container">
+            <div class="row">
+                <div class="col-3">
+                    <img src="">
+                </div>
+                <div class="col-3">
+                    <img src="">
+                </div>
+                <div class="col-3">
+                    <img src="">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="small-container">
+        <h1 class="title">Alte Produkte</h1>
+        <div class="row">
+            <div class="col-4">
+                <img src="Bilder/Brause.jpg">
+                <h2>Brause</h2>
+                <div class="rating"></div>
+                <h2><em>0.30€</em></h2>
+            </div>
+            <div class="col-4">
+                <img src="Bilder/Milch.jpg">
+                <h2>Vanille Milch</h2>
+                <div class="rating"></div>
+                <h2><em>1.80€</em></h2>
+            </div>
+            <div class="col-4">
+                <img src="Bilder/Pop.jpg">
+                <h2>Karamel Popcorn</h2>
+                <div class="rating"></div>
+                <h2><em>6.00€</em></h2>
+            </div>
+        </div>
+
+        <h1 class="title">Neuste Produkte</h1>
+        <div class="row">
+            <div class="col-4">
+                <img src="Bilder/nr1.png">
+                <h2>Popping Candy Banana/Black Cherry</h2>
+                <div class="rating"></div>
+                <h2><em>0.30€</em></h2>
+            </div>
+            <div class="col-4">
+                <img src="Bilder/Mango.png">
+                <h2>Popping Candy Mango/Cotton</h2>
+                <div class="rating"></div>
+                <h2><em>0.30€</em></h2>
+            </div>
+            <div class="col-4">
+                <img src="Bilder/Melon.png">
+                <h2>Popping Candy Limited Edition</h2>
+                <div class="rating"></div>
+                <h2><em>0.30€</em></h2>
+            </div>
+        </div>
+    </div>
+
+<a href="Zugang.html">.</a>
+</body>
+</html>

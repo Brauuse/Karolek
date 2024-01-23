@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bestellinformationen</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 20px;
+        }
+
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+
+        #order-details {
+            margin: 20px;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            background-color: #f8f8f8;
+        }
+
+        .order-item {
+            margin-bottom: 10px;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            background-color: #fff;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .delete-button {
+            background-color: #ff4d4d;
+            color: #fff;
+            border: none;
+            padding: 5px 10px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        #delete-order-button {
+            background-color: #ff4d4d;
+            color: #fff;
+            border: none;
+            padding: 10px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Bestellinformationen</h1>
+    <div id="order-details"></div>
+    <button id="delete-order-button" onclick="deleteOrder()">Gesamte Bestellung löschen</button>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            function displayOrderDetails() {
+                const storedCode = localStorage.getItem('orderCode');
+                if (storedCode) {
+                    const orderDetailsContainer = document.getElementById('order-details');
+                    orderDetailsContainer.innerHTML = `<p>Dein Bestellcode: ${storedCode}</p>`;
+                    const cart = JSON.parse(localStorage.getItem('cart'));
+                    if (cart && cart.length > 0) {
+                        cart.forEach((item, index) => {
+                            const itemContainer = document.createElement('div');
+                            itemContainer.classList.add('order-item');
+                            itemContainer.innerHTML = `
+                                <p>${item.name} - ${item.price.toFixed(2)}€</p>
+                                <button class="delete-button" onclick="deleteItem(${index})">Löschen</button>
+                            `;
+                            orderDetailsContainer.appendChild(itemContainer);
+                        });
+                    } else {
+                        orderDetailsContainer.innerHTML += '<p>Keine Artikel im Warenkorb gefunden.</p>';
+                    }
+                } else {
+                    orderDetailsContainer.innerHTML = '<p>Keine Bestellinformationen gefunden.</p>';
+                }
+            }
+
+            function deleteItem(index) {
+                let cart = JSON.parse(localStorage.getItem('cart'));
+                cart.splice(index, 1);
+                localStorage.setItem('cart', JSON.stringify(cart));
+                displayOrderDetails();
+            }
+
+            function deleteOrder() {
+                localStorage.removeItem('orderCode');
+                localStorage.removeItem('cart');
+                displayOrderDetails();
+            }
+
+            displayOrderDetails();
+        });
+    </script>
+</body>
+</html>
